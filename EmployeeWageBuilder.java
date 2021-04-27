@@ -9,11 +9,15 @@ public class EmployeeWageBuilder {
 	  final int IS_FULL_TIME = 1;
 	  final int IS_PART_TIME = 2;
 	  int Wage_Per_Hour = 20;
-	  int empWorkingHours = 0;
 	  int workingDaysPermonth = 20;
-	  int total_Salary = 0;
+	  int empHours_inMonth = 100;
 
-	  for( int day = 1; day <= workingDaysPermonth; day++ )
+	  int empWorkingHours = 0;
+	  int totalEmployeeWage = 0;
+	  System.out.printf("%5s     %5s     %5s     %5s\n","Day", "empWorkingHours", "dailyWage", "totalEmpWorkingHours");
+
+	  for(int day = 1, totalEmpWorkingHours = 0; day <= workingDaysPermonth && totalEmpWorkingHours < empHours_inMonth;
+				day++, totalEmpWorkingHours += empWorkingHours)
 	  {
 		int empCheck = (int) Math.floor(Math.random() * 100) % 3;
 
@@ -31,9 +35,10 @@ public class EmployeeWageBuilder {
 			break;
 		   }
               int dailyEmployeeWage = Wage_Per_Hour * empWorkingHours;
-              System.out.println("Day " + day + " dailyEmployeeWage is " + dailyEmployeeWage);
-              total_Salary = total_Salary + dailyEmployeeWage;
+              totalEmployeeWage += dailyEmployeeWage;
+              System.out.printf("%5d     %5d     %5d     %5d\n",day, empWorkingHours, dailyEmployeeWage, totalEmpWorkingHours + empWorkingHours);           
+
 	  }
-	  System.out.println("Total Salary for a Month:" + total_Salary);
+	  System.out.println("Total Salary for a Month:" + totalEmployeeWage);
 	}
 }
